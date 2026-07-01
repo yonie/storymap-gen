@@ -12,7 +12,7 @@ def render_html(storymap: StoryMap) -> str:
 
     Features:
     - Colored columns per activity
-    - Colored release rows matching sprint colors
+    - Colored release rows matching release colors
     - Clickable ticket links
     - Responsive grid layout
     - Print-friendly
@@ -47,10 +47,10 @@ def render_html(storymap: StoryMap) -> str:
                 release_stories += f"    <td class=\"story-cell empty\">—</td>\n"
 
         releases_html += f"""  <tr class="release-row" style="--release-color: {escape(release.color)}">
-    <td class="sprint-cell" style="background: {escape(release.color)}">
-      <div class="sprint-id">{escape(release.id)}</div>
-      <div class="sprint-label">{escape(release.label)}</div>
-      <div class="sprint-goal">{escape(release.goal)}</div>
+    <td class="release-cell" style="background: {escape(release.color)}">
+      <div class="release-id">{escape(release.id)}</div>
+      <div class="release-label">{escape(release.label)}</div>
+      <div class="release-goal">{escape(release.goal)}</div>
     </td>
 {release_stories}  </tr>
 """
@@ -137,26 +137,26 @@ def render_html(storymap: StoryMap) -> str:
     line-height: 1.3;
   }}
 
-  .sprint-cell {{
+  .release-cell {{
     width: 180px;
     min-width: 180px;
     padding: 12px;
     border-right: 2px solid #b0b0b0;
   }}
 
-  .sprint-id {{
+  .release-id {{
     font-weight: 800;
     font-size: 1.1rem;
     margin-bottom: 2px;
   }}
 
-  .sprint-label {{
+  .release-label {{
     font-weight: 600;
     font-size: 0.85rem;
     margin-bottom: 8px;
   }}
 
-  .sprint-goal {{
+  .release-goal {{
     font-size: 0.78rem;
     color: #444;
     line-height: 1.4;
@@ -228,7 +228,7 @@ def render_html(storymap: StoryMap) -> str:
 
   @media (max-width: 1200px) {{
     table {{ table-layout: auto; }}
-    .sprint-cell {{ width: 140px; min-width: 140px; }}
+    .release-cell {{ width: 140px; min-width: 140px; }}
   }}
 </style>
 </head>
@@ -241,7 +241,7 @@ def render_html(storymap: StoryMap) -> str:
 <table>
   <thead>
     <tr>
-    <th class="activity-header" style="background: #1a1a2e">Sprint / Goal</th>
+    <th class="activity-header" style="background: #1a1a2e">Release / Goal</th>
 {activities_html}    </tr>
   </thead>
   <tbody>

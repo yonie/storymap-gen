@@ -8,9 +8,9 @@ Output as ASCII art, HTML, or Markdown — perfect for planning docs, wikis, and
 ## Why?
 
 Most task management tools (Jira, Linear, GitHub Issues) work great for tracking
-individual tickets inside a sprint, but they **don't connect sprints to the
+individual tickets inside a sprint, but they **don't connect releases to the
 bigger picture**: the functional slices of your product that span across
-sprints. That connection — *"what can a user actually do after this release,
+release cycles. That connection — *"what can a user actually do after this release,
 end to end?"* — is what [user story mapping](https://jpattonassociates.com/user-story-mapping/)
 by [Jeff Patton](https://jpattonassociates.com/) is all about.
 
@@ -166,7 +166,7 @@ See the `examples/` directory for each of these in use.
 ## Keep the JSON in your repo
 
 We recommend keeping `storymap.json` in your project repository (e.g.
-`docs/storymap.json`) and **committing it**. Every sprint re-slice, story
+`docs/storymap.json`) and **committing it**. Every re-slice, story
 addition, or release re-plan becomes a reviewable git diff — your team can
 comment on it in PRs, and the story map evolves alongside the codebase.
 

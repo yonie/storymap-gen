@@ -33,8 +33,8 @@ def main():
         help="Column width for ASCII output (default: 14)",
     )
     parser.add_argument(
-        "--sprint-width", type=int, default=22,
-        help="Sprint column width for ASCII output (default: 22)",
+        "--release-width", type=int, default=22,
+        help="Release column width for ASCII output (default: 22)",
     )
     parser.add_argument(
         "--serve", action="store_true",
@@ -73,7 +73,7 @@ def main():
         return
 
     if args.format == "ascii":
-        result = render_ascii(storymap, col_width=args.col_width, sprint_width=args.sprint_width)
+        result = render_ascii(storymap, col_width=args.col_width, release_width=args.release_width)
         _write_output(result, args.output)
     elif args.format == "html":
         result = render_html(storymap)
@@ -84,7 +84,7 @@ def main():
     elif args.format == "all":
         outdir = Path(args.output or "output")
         outdir.mkdir(parents=True, exist_ok=True)
-        ascii_result = render_ascii(storymap, col_width=args.col_width, sprint_width=args.sprint_width)
+        ascii_result = render_ascii(storymap, col_width=args.col_width, release_width=args.release_width)
         (outdir / "storymap.txt").write_text(ascii_result, encoding="utf-8")
         html_result = render_html(storymap)
         (outdir / "storymap.html").write_text(html_result, encoding="utf-8")

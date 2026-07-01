@@ -10,13 +10,13 @@ from .models import StoryMap
 def render_markdown(storymap: StoryMap) -> str:
     """Render story map as a markdown table.
 
-    Activities are columns, releases are rows. Sprint goal is in the first column.
+    Activities are columns, releases are rows. Release goal is in the first column.
     Stories are listed as bullet points in each cell. Ticket IDs link to the ticket system.
     """
     lines = []
 
     # Header row
-    header = "| Sprint / Goal |"
+    header = "| Release / Goal |"
     separator = "| --- |"
     for activity in storymap.activities:
         desc = f"<br><small>{escape(activity.description)}</small>" if activity.description else ""
@@ -27,10 +27,10 @@ def render_markdown(storymap: StoryMap) -> str:
 
     # Release rows
     for release in storymap.releases:
-        # Sprint cell: ID, label, goal
-        sprint_cell = f"**{release.id}** — {release.label}<br><br>*{release.goal}*"
+        # Release cell: ID, label, goal
+        release_cell = f"**{release.id}** — {release.label}<br><br>*{release.goal}*"
 
-        row = f"| {sprint_cell} |"
+        row = f"| {release_cell} |"
         for activity in storymap.activities:
             stories = storymap.stories_for_cell(release.id, activity.id)
             if stories:

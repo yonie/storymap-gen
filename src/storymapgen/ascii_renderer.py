@@ -42,13 +42,13 @@ def _build_story_lines(stories, col_width: int) -> list[str]:
     return lines
 
 
-def _build_sprint_lines(release, sprint_width: int) -> list[str]:
-    """Build lines for the sprint cell: ID, label, blank, goal."""
+def _build_release_lines(release, release_width: int) -> list[str]:
+    """Build lines for the release cell: ID, label, blank, goal."""
     lines = [release.id]
-    for line in _wrap(release.label, sprint_width):
+    for line in _wrap(release.label, release_width):
         lines.append(line)
     lines.append("")
-    for line in _wrap(release.goal, sprint_width):
+    for line in _wrap(release.goal, release_width):
         lines.append(line)
     return lines
 
@@ -78,19 +78,19 @@ def _cell(lines: list[str], width: int) -> list[str]:
     return [_pad(line, width) for line in lines]
 
 
-def render_ascii(storymap: StoryMap, col_width: int = 14, sprint_width: int = 22) -> str:
+def render_ascii(storymap: StoryMap, col_width: int = 14, release_width: int = 22) -> str:
     """Render story map as ASCII art table.
 
     Args:
         storymap: The story map to render.
         col_width: Width of each activity column.
-        sprint_width: Width of the sprint/goal column.
+        release_width: Width of the release/goal column.
 
     Returns:
         ASCII art string with code block fences.
     """
     num_activities = len(storymap.activities)
-    all_widths = [sprint_width] + [col_width] * num_activities
+    all_widths = [release_width] + [col_width] * num_activities
 
     def top_line():
         return "┌" + "┬".join(["─" * w for w in all_widths]) + "┐"
@@ -105,7 +105,7 @@ def render_ascii(storymap: StoryMap, col_width: int = 14, sprint_width: int = 22
     out.append("```")
 
     # Header: activity titles
-    header_cells = [_cell(["Sprint / Goal"], sprint_width)]
+    header_cells = [_cell(["Release / Goal"], release_width)]
     for activity in storymap.activities:
         header_cells.append(_cell(_wrap(activity.title, col_width), col_width))
 
@@ -117,8 +117,8 @@ def render_ascii(storymap: StoryMap, col_width: int = 14, sprint_width: int = 22
     for release in storymap.releases:
         out.append(sep_line())
 
-        sprint_cell = _cell(_build_sprint_lines(release, sprint_width), sprint_width)
-        cells = [sprint_cell]
+        release_cell = _cell(_build_release_lines(release, release_width), release_width)
+        cells = [release_cell]
         for activity in storymap.activities:
             stories = storymap.stories_for_cell(release.id, activity.id)
             if stories:

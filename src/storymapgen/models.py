@@ -48,7 +48,7 @@ class Story:
 
 @dataclass
 class Release:
-    """A horizontal slice through the map — a sprint or release."""
+    """A horizontal slice through the map — a release."""
     id: str
     label: str
     goal: str
