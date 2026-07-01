@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "storymap-gen"
+version = "0.1.0"
+description = "Generate user story maps (Jeff Patton style) from JSON. ASCII art, HTML, Markdown output."
+readme = "README.md"
+license = {text = "MIT"}
+authors = [{name = "yonie"}]
+requires-python = ">=3.10"
+dependencies = []
+
+[project.scripts]
+storymapgen = "storymapgen.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

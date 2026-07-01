@@ -1,0 +1,56 @@
+{
+  "title": "Fitness Coaching Platform",
+  "persona": "Independent fitness coaches and their clients",
+  "narrative": "A coach signs up, creates training programs, assigns them to clients, tracks progress, and adjusts based on results.",
+  "ticket_url_template": "https://linear.app/example/issue/{ticket}",
+  "activities": [
+    {"id": "signup", "title": "Sign up and set up", "description": "I create my coach profile and connect my clients"},
+    {"id": "build", "title": "Build programs", "description": "I create reusable training programs with exercises and progressions"},
+    {"id": "assign", "title": "Assign to clients", "description": "I assign programs to individual clients with customizations"},
+    {"id": "track", "title": "Track progress", "description": "I see how my clients are doing and where they're struggling"},
+    {"id": "adjust", "title": "Adjust and grow", "description": "I modify programs based on results and expand my client base"}
+  ],
+  "releases": [
+    {
+      "id": "R1",
+      "label": "MVP",
+      "goal": "A coach can create a program and assign it to a client — proving the core workflow end-to-end.",
+      "color": "#dbeafe"
+    },
+    {
+      "id": "R2",
+      "label": "Client engagement",
+      "goal": "Clients can log workouts and see their progress — the loop between coach and client is closed.",
+      "color": "#d1fae5"
+    },
+    {
+      "id": "R3",
+      "label": "Data-driven coaching",
+      "goal": "Coaches can make data-driven decisions: progress charts, plateaus detection, and program adjustments are all visible.",
+      "color": "#fed7aa"
+    },
+    {
+      "id": "R4",
+      "label": "Scale",
+      "goal": "Coaches can manage 50+ clients efficiently with templates, bulk actions, and automated check-ins.",
+      "color": "#e9d5ff"
+    }
+  ],
+  "stories": [
+    {"id": "S1", "activity": "signup", "release": "R1", "title": "Coach signup + profile", "ticket": "FIT-1", "estimate": 5},
+    {"id": "S2", "activity": "build", "release": "R1", "title": "Create program with exercises", "ticket": "FIT-2", "estimate": 8},
+    {"id": "S3", "activity": "assign", "release": "R1", "title": "Assign program to client", "ticket": "FIT-3", "estimate": 5},
+
+    {"id": "S4", "activity": "signup", "release": "R2", "title": "Client self-signup via coach link", "ticket": "FIT-4", "estimate": 3},
+    {"id": "S5", "activity": "track", "release": "R2", "title": "Client logs workout results", "ticket": "FIT-5", "estimate": 5},
+    {"id": "S6", "activity": "track", "release": "R2", "title": "Coach sees client progress dashboard", "ticket": "FIT-6", "estimate": 5},
+
+    {"id": "S7", "activity": "track", "release": "R3", "title": "Progress charts (volume, PRs)", "ticket": "FIT-7", "estimate": 5},
+    {"id": "S8", "activity": "adjust", "release": "R3", "title": "Clone and modify program for client", "ticket": "FIT-8", "estimate": 3},
+    {"id": "S9", "activity": "adjust", "release": "R3", "title": "Plateau detection alert", "ticket": "FIT-9", "estimate": 5},
+
+    {"id": "S10", "activity": "build", "release": "R4", "title": "Program templates library", "ticket": "FIT-10", "estimate": 5},
+    {"id": "S11", "activity": "adjust", "release": "R4", "title": "Automated weekly check-in messages", "ticket": "FIT-11", "estimate": 3},
+    {"id": "S12", "activity": "adjust", "release": "R4", "title": "Bulk assign program to multiple clients", "ticket": "FIT-12", "estimate": 3}
+  ]
+}

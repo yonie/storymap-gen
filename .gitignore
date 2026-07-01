@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.egg
+build/
+dist/
+.eggs/
+
+# Output
+output/
+*.html
+*.svg
+*.txt
+!docs/**
+!README.md
+!LICENSE
+
+# Editor / OS
+.DS_Store
+.idea/
+.vscode/
+*.swp

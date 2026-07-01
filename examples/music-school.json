@@ -1,0 +1,49 @@
+{
+  "title": "Music School Management",
+  "persona": "Music school administrators, teachers, and students",
+  "narrative": "An admin sets up the term, teachers get assigned to classes, students enroll, lessons happen, and progress is tracked.",
+  "ticket_url_template": "https://example.atlassian.net/browse/{ticket}",
+  "activities": [
+    {"id": "setup", "title": "Set up the term", "description": "I create classes, schedule rooms, and assign teachers for the upcoming term"},
+    {"id": "enroll", "title": "Enroll students", "description": "Students (or parents) browse classes and sign up"},
+    {"id": "teach", "title": "Teach lessons", "description": "Teachers take attendance and log what was covered"},
+    {"id": "progress", "title": "Track progress", "description": "Teachers and parents see how students are developing over time"},
+    {"id": "bill", "title": "Bill and report", "description": "Admin generates invoices and end-of-term reports"}
+  ],
+  "releases": [
+    {
+      "id": "R1",
+      "label": "MVP",
+      "goal": "A music school can run a full term digitally — from class creation to end-of-term reporting — replacing spreadsheets and paper.",
+      "color": "#dbeafe"
+    },
+    {
+      "id": "R2",
+      "label": "Progress tracking",
+      "goal": "Teachers and parents can see student development — progress is visible, not hidden in notebooks.",
+      "color": "#d1fae5"
+    },
+    {
+      "id": "R3",
+      "label": "Self-service and growth",
+      "goal": "The school can scale to more students without more admin overhead — enrollment, scheduling, and billing are automated.",
+      "color": "#e9d5ff"
+    }
+  ],
+  "stories": [
+    {"id": "S1", "activity": "setup", "release": "R1", "title": "Create class (instrument, level, room, time)", "ticket": "MUS-1", "estimate": 5},
+    {"id": "S2", "activity": "setup", "release": "R1", "title": "Assign teacher to class", "ticket": "MUS-2", "estimate": 3},
+    {"id": "S3", "activity": "enroll", "release": "R1", "title": "Student enrolls in available class", "ticket": "MUS-3", "estimate": 5},
+    {"id": "S4", "activity": "teach", "release": "R1", "title": "Teacher takes attendance", "ticket": "MUS-4", "estimate": 3},
+    {"id": "S5", "activity": "bill", "release": "R1", "title": "Generate invoice per student", "ticket": "MUS-5", "estimate": 5},
+
+    {"id": "S6", "activity": "teach", "release": "R2", "title": "Teacher logs lesson notes (repertoire, exercises)", "ticket": "MUS-6", "estimate": 3},
+    {"id": "S7", "activity": "progress", "release": "R2", "title": "Student progress timeline", "ticket": "MUS-7", "estimate": 5},
+    {"id": "S8", "activity": "progress", "release": "R2", "title": "Parent portal view (read-only)", "ticket": "MUS-8", "estimate": 5},
+
+    {"id": "S9", "activity": "enroll", "release": "R3", "title": "Waitlist with auto-promotion when spot opens", "ticket": "MUS-9", "estimate": 3},
+    {"id": "S10", "activity": "setup", "release": "R3", "title": "Room scheduling conflict detection", "ticket": "MUS-10", "estimate": 5},
+    {"id": "S11", "activity": "bill", "release": "R3", "title": "Automatic invoice generation at term end", "ticket": "MUS-11", "estimate": 3},
+    {"id": "S12", "activity": "bill", "release": "R3", "title": "End-of-term report PDF per student", "ticket": "MUS-12", "estimate": 5}
+  ]
+}

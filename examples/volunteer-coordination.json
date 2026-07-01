@@ -1,0 +1,56 @@
+{
+  "title": "Volunteer Coordination Platform",
+  "persona": "Local volunteer organizations coordinating shifts and events",
+  "narrative": "An organizer posts volunteer opportunities, volunteers sign up for shifts, check in on site, and track their impact over time.",
+  "ticket_url_template": "https://github.com/example/volunteer-coordination/issues/{ticket}",
+  "activities": [
+    {"id": "post", "title": "Post opportunities", "description": "I create volunteer shifts and events that people can sign up for"},
+    {"id": "signup", "title": "Volunteers sign up", "description": "Volunteers browse and claim shifts that fit their schedule"},
+    {"id": "checkin", "title": "Check in on site", "description": "Volunteers confirm they showed up and log their hours"},
+    {"id": "impact", "title": "Track impact", "description": "Volunteers and organizers see cumulative hours and outcomes"},
+    {"id": "grow", "title": "Grow community", "description": "Organizers recruit and retain volunteers through recognition"}
+  ],
+  "releases": [
+    {
+      "id": "R1",
+      "label": "MVP",
+      "goal": "An organizer can post a shift and a volunteer can claim it — the core matching loop works.",
+      "color": "#dbeafe"
+    },
+    {
+      "id": "R2",
+      "label": "On-site check-in",
+      "goal": "Organizers know who actually showed up — hours are logged automatically, not on paper.",
+      "color": "#d1fae5"
+    },
+    {
+      "id": "R3",
+      "label": "Impact dashboard",
+      "goal": "Volunteers see their cumulative impact and organizers can report to funders with real data.",
+      "color": "#fed7aa"
+    },
+    {
+      "id": "R4",
+      "label": "Retention",
+      "goal": "Volunteers keep coming back — recognition, reminders, and community features reduce churn.",
+      "color": "#e9d5ff"
+    }
+  ],
+  "stories": [
+    {"id": "S1", "activity": "post", "release": "R1", "title": "Create volunteer shift (date, role, capacity)", "ticket": "VOL-1", "estimate": 5},
+    {"id": "S2", "activity": "signup", "release": "R1", "title": "Browse and claim a shift", "ticket": "VOL-2", "estimate": 5},
+    {"id": "S3", "activity": "signup", "release": "R1", "title": "Cancel claim (with notification)", "ticket": "VOL-3", "estimate": 3},
+
+    {"id": "S4", "activity": "checkin", "release": "R2", "title": "QR check-in at event location", "ticket": "VOL-4", "estimate": 5},
+    {"id": "S5", "activity": "checkin", "release": "R2", "title": "Organizer sees who's checked in (real-time)", "ticket": "VOL-5", "estimate": 3},
+    {"id": "S6", "activity": "impact", "release": "R2", "title": "Automatic hours logging from check-in/out", "ticket": "VOL-6", "estimate": 5},
+
+    {"id": "S7", "activity": "impact", "release": "R3", "title": "Volunteer hours dashboard (personal)", "ticket": "VOL-7", "estimate": 3},
+    {"id": "S8", "activity": "impact", "release": "R3", "title": "Organization impact report (total hours, events)", "ticket": "VOL-8", "estimate": 5},
+    {"id": "S9", "activity": "impact", "release": "R3", "title": "Export report as PDF for funders", "ticket": "VOL-9", "estimate": 3},
+
+    {"id": "S10", "activity": "grow", "release": "R4", "title": "Milestone badges (10h, 50h, 100h)", "ticket": "VOL-10", "estimate": 3},
+    {"id": "S11", "activity": "grow", "release": "R4", "title": "Email reminder for upcoming shifts", "ticket": "VOL-11", "estimate": 3},
+    {"id": "S12", "activity": "grow", "release": "R4", "title": "Volunteer of the month spotlight", "ticket": "VOL-12", "estimate": 2}
+  ]
+}
