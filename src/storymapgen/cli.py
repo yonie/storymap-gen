@@ -69,7 +69,7 @@ def main():
         return
 
     if args.serve:
-        _serve_html(storymap, args.port)
+        _serve_html(args.input, args.port)
         return
 
     if args.format == "ascii":
@@ -101,24 +101,35 @@ def _write_output(result: str, path: str | None):
         print(result)
 
 
-def _serve_html(storymap: StoryMap, port: int):
+def _serve_html(input_path: str, port: int):
     import http.server
     import socketserver
-    import tempfile
 
-    html = render_html(storymap)
-    tmpdir = tempfile.mkdtemp()
-    htmlpath = Path(tmpdir) / "storymap.html"
-    htmlpath.write_text(html, encoding="utf-8")
+    class Handler(http.server.BaseHTTPRequestHandler):
+        def do_GET(self):
+            # Re-read and re-render on every request so the preview is live:
+            # edit the JSON, refresh the browser, see the change.
+            try:
+                storymap = StoryMap.from_json(input_path)
+                body = render_html(storymap).encode("utf-8")
+                status, ctype = 200, "text/html; charset=utf-8"
+            except (StoryMapError, FileNotFoundError) as e:
+                body = f"Error: {e}".encode("utf-8")
+                status, ctype = 500, "text/plain; charset=utf-8"
+            self.send_response(status)
+            self.send_header("Content-Type", ctype)
+            self.send_header("Content-Length", str(len(body)))
+            self.end_headers()
+            self.wfile.write(body)
 
-    handler = http.server.SimpleHTTPRequestHandler
-    handler.directory = tmpdir
+        def log_message(self, *args):
+            pass
 
-    print(f"Serving story map at http://localhost:{port}/storymap.html")
-    print("Press Ctrl+C to stop.")
+    print(f"Serving story map at http://localhost:{port}/")
+    print(f"Live: re-reads {input_path} on each refresh. Press Ctrl+C to stop.")
 
     try:
-        with socketserver.TCPServer(("", port), handler) as httpd:
+        with socketserver.TCPServer(("", port), Handler) as httpd:
             httpd.serve_forever()
     except KeyboardInterrupt:
         print("\nStopped.")
