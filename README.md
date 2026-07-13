@@ -163,6 +163,10 @@ ticketing tool:
 
 See the `examples/` directory for each of these in use.
 
+Linking is one-way here: the map points out to tickets that already exist. To
+push changes *back* into the tracker (create tickets, update estimates, move
+items across sprints), see [From map to tickets: the MCP round-trip](#from-map-to-tickets-the-mcp-round-trip).
+
 ## Keep the JSON in your repo
 
 We recommend keeping `storymap.json` in your project repository (e.g.
@@ -187,6 +191,36 @@ LLM to read and reshape. The recommended loop:
 Because references are ID-based (not index-based), AI edits are far less
 likely to silently corrupt the map by inserting an activity and forgetting
 to renumber story indices.
+
+### From map to tickets: the MCP round-trip
+
+The story map and your task tracker (Linear, Jira, GitHub Issues) do different
+jobs. The map is where you reason about the **big picture**: release goals,
+capacity, estimates, and how functional slices flow across release cycles. The
+tracker is where **ticket-level execution** lives. Keeping both in sync by hand
+is the tedious part, and it's exactly where an AI model with an MCP connection
+to your tracker earns its keep.
+
+The workflow, as used day to day:
+
+1. **Discuss broad changes at the map level.** Talk through goals, capacity
+   plans, and estimates with the AI against `docs/storymap.json`. *"R2 is
+   overloaded at 40 points, pull the two lowest-value stories into R3"* or
+   *"re-estimate the signup activity, these feel light"*.
+2. **Reshape and review the map.** The AI edits the JSON; you review it with
+   `--serve` and `git diff docs/storymap.json`. This diff is the agreed plan,
+   and your gate before anything touches the tracker.
+3. **Apply the detail to the tracker via MCP.** Once the map is agreed, ask the
+   AI to propagate the changes into Linear/Jira through its MCP integration:
+   create tickets for new stories, update estimates, and **swap items across
+   sprints/releases** to match the re-sliced map. The `ticket` field on each
+   story ties a map entry to its real ticket ID, so the AI can match map stories
+   to existing tickets rather than duplicating them.
+
+storymap-gen itself does not talk to your tracker: it renders and validates the
+JSON. The MCP write-back is done by the AI agent using your tracker's MCP tools,
+with the map and its git diff as the human-reviewed source of truth. In other
+words, the map is where you decide, MCP is how the decision lands in the tracker.
 
 ### CI / build pipeline
 
